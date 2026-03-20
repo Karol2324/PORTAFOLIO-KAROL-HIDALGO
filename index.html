@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diana Hidalgo | Portafolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        :root { --accent: #a155ff; }
+        [data-bs-theme="light"] { --accent: #0d6efd; }
+        
+        body { font-family: 'Inter', sans-serif; transition: 0.3s; }
+        .img-hero { width: 160px; height: 160px; object-fit: cover; border-radius: 50%; border: 4px solid var(--accent); margin: 0 auto; display: block; }
+        
+        /* Tarjetas */
+        article.project-card {
+            background-color: var(--bs-body-bg);
+            border: 1px solid var(--bs-border-color);
+            border-radius: 20px;
+            transition: 0.4s;
+            overflow: hidden;
+            text-align: center;
+        }
+        article.project-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .card-img-top { height: 200px; object-fit: cover; width: 100%; }
+
+        .lang-en, .lang-fr { display: none; }
+        .nav-lang { cursor: pointer; font-weight: bold; color: gray; padding: 0 5px; }
+        .nav-lang.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+    </style>
+</head>
+<body>
+
+    <header class="sticky-top bg-body-tertiary border-bottom">
+        <nav class="navbar navbar-expand-lg container">
+            <section class="container-fluid d-flex justify-content-between">
+                <a class="navbar-brand fw-bold" href="#">DIANA<span style="color:var(--accent)">.</span>H</a>
+                
+                <section class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav small fw-bold text-uppercase">
+                        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#articulos">Artículos</a></li>
+                    </ul>
+                </section>
+
+                <section class="d-flex align-items-center gap-2">
+                    <span class="nav-lang active" onclick="changeLang('es', this)">ES</span>
+                    <span class="nav-lang" onclick="changeLang('en', this)">EN</span>
+                    <button class="btn btn-sm border ms-2" id="btnTheme"><i class="bi bi-sun-fill"></i></button>
+                </section>
+            </section>
+        </nav>
+    </header>
+
+    <main class="container text-center py-5" id="inicio">
+        <section class="mb-5">
+            <img src="https://ca.slack-edge.com/E02KLGDBF9B-U04421AFUL9-a15219b488e9-512" alt="Diana" class="img-hero mb-4">
+            <h1 class="display-4 fw-bold">Diana Carolina Hidalgo Guerrero</h1>
+            <p class="lead text-secondary container col-md-8">
+                <span class="lang-es">Staff Career & Performance @ Globant.</span>
+                <span class="lang-en">Staff Career & Performance @ Globant.</span>
+            </p>
+        </section>
+
+        <section id="proyectos" class="row row-cols-1 row-cols-md-2 g-5 justify-content-center py-5">
+            <article class="col" style="max-width: 500px;">
+                <article class="project-card h-100 shadow">
+                    <img src="https://cdn.pixabay.com/photo/2023/08/12/08/46/ai-generated-8185136_1280.png" class="card-img-top" alt="Project 1">
+                    <section class="card-body p-4">
+                        <h3 class="h4 fw-bold">CARRERAS SPORT 2025</h3>
+                        <a href="https://karol2324.github.io/CARRERAS-SPORT-2025/" target="_blank" class="btn btn-primary w-100 rounded-pill mt-3">VISITAR</a>
+                    </section>
+                </article>
+            </article>
+
+            <article class="col" style="max-width: 500px;">
+                <article class="project-card h-100 shadow">
+                    <img src="https://cdn.pixabay.com/photo/2017/04/27/08/18/champagne-2264811_1280.jpg" class="card-img-top" alt="Project 2">
+                    <section class="card-body p-4">
+                        <h3 class="h4 fw-bold">PROYECTO INTEGRADOR</h3>
+                        <a href="https://karol2324.github.io/PROYECTO-INTEGRADOR/" target="_blank" class="btn btn-primary w-100 rounded-pill mt-3">VISITAR</a>
+                    </section>
+                </article>
+            </article>
+        </section>
+
+        <section id="articulos" class="py-5 border-top">
+            <h2 class="mb-4">Artículos</h2>
+            <section class="row g-4 justify-content-center">
+                <article class="col-md-5">
+                    <article class="p-4 bg-body-tertiary rounded-4 border">
+                        <h4>Udemy ROI Latam</h4>
+                        <a href="articulo1.html" class="btn btn-link p-0 text-decoration-none">LEER MÁS →</a>
+                        <h4>k6 y Grafana</h4>
+                        <a href="articulo2.html" class="btn btn-link p-0 text-decoration-none">LEER MÁS →</a>
+                    </article>
+                </article>
+            </section>
+        </section>
+
+        <footer id="contacto" class="py-5 mt-5 border-top border-secondary bg-body-tertiary">
+        <section class="container text-center">
+            
+            <section class="mb-5">
+                <h3 class="h6 text-uppercase mb-3 tracking-widest text-secondary">
+                    <span class="lang-es">Escanéame</span>
+                    <span class="lang-en">Scan Me</span>
+                </h3>
+                <figure class="d-inline-block p-3 bg-white rounded-4 shadow-sm">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://github.com/Karol2324&color=a155ff" 
+                         alt="QR GitHub Diana Hidalgo" 
+                         style="width: 120px; height: 120px;">
+                </figure>
+            </section>
+
+            <h2 class="display-5 fw-bold mb-4" style="color: #ff4d4d;">
+                karolhg95@gmail.com
+            </h2>
+
+            <nav class="d-flex justify-content-center gap-4 fs-2 mb-4">
+                <a href="https://www.linkedin.com/in/carolina-hidalgo-5362221b9"target="_blank" class="text-body" title="LinkedIn">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com/karol.hidalgo.7?igsh=MXZlbnJ4Z28xMTZocw==" target="_blank" class="text-body" title="Instagram">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="https://github.com/Karol2324" target="_blank" class="text-body" title="GitHub">
+                    <i class="bi bi-github"></i>
+                </a>
+            </nav>
+
+            <section class="pt-4 border-top border-secondary-subtle">
+                <p class="small text-secondary mb-0">
+                    <span class="lang-es">© 2026 Diana Carolina Hidalgo Guerrero — Diseñado con Bootstrap 5.3 </span>
+                    <span class="lang-en">© 2026 Diana Carolina Hidalgo Guerrero — Designed with Bootstrap 5.3 </span>
+                </p>
+                <p class="x-small text-muted mt-1" style="font-size: 0.7rem;">
+                    Staff Career Y Performance | QC Analyst | Java Developer
+                </p>
+            </section>
+
+        </section>
+    </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function changeLang(lang, element) {
+            document.querySelectorAll('.lang-es, .lang-en, .lang-fr').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.lang-' + lang).forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.nav-lang').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        const btnTheme = document.getElementById('btnTheme');
+        btnTheme.addEventListener('click', () => {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-bs-theme', newTheme);
+            btnTheme.innerHTML = newTheme === 'dark' ? '<i class="bi bi-brightness-high-fill"></i>' : '<i class="bi bi-moon-fill"></i>';
+        });
+    </script>
+</body>
+</html>

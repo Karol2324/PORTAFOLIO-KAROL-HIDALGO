@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Karol Hidalgo">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Artículo: K6 y Grafana | Diana Hidalgo</title>
+</head>
+<body>
+    <nav class="container py-3"><a href="index.html" class="btn btn-sm btn-outline-secondary">← Volver al Portafolio</a></nav>
+    
+    <main class="container py-5">
+        <article class="col-lg-8 mx-auto">
+            <header class="mb-5 text-center">
+                <h1 class="display-4 fw-bold">Del Click al Código: Transformando el QA con k6 y Grafana</h1>
+                <p class="text-secondary">Por Diana Carolina Hidalgo Guerrero</p>
+            </header>
+            
+            <section class="lead">
+                <p>En la era del Software Moderno, el rendimiento ya no es un lujo o una tarea que se deja para el final del ciclo; es un requerimiento fundacional. Como ingenieros de calidad, nuestra misión ha evolucionado: hemos pasado de los "clicks" manuales a la creación de activos de ingeniería que garantizan la resiliencia de los sistemas antes de que lleguen a producción.
+                    El Problema: El peso de lo tradicionalLas herramientas de carga tradicionales, como JMeter o LoadRunner, a menudo se sienten pesadas, basadas en interfaces gráficas (GUI) complejas y formatos XML difíciles de versionar. Esto desplazaba al QA fuera del flujo de desarrollo ágil.
+                    La Solución: k6 y el enfoque Developer-Centrick6 surge como una herramienta Open Source diseñada para la era moderna. Su potencia radica en su motor escrito en Go, pero con la flexibilidad de permitirnos programar scripts en JavaScript. Esto permite que nuestras pruebas vivan en el mismo repositorio de Git que el código de la aplicación, facilitando la colaboración real entre Devs y QAs.Anatomía de una Prueba de Alto Impacto Programar es el nuevo testear.
+                     Un script robusto de k6 no solo lanza peticiones; se estructura para dominar el caos:
+                     Init & Default Function: Donde configuramos los usuarios virtuales (VUs) y el flujo lógico de las peticiones.Thresholds (Umbrales): La verdadera magia del QA. Aquí definimos el éxito antes de empezar, estableciendo reglas de negocio o SLAs estrictos. Por ejemplo, podemos exigir que el 95% de las respuestas sean menores a 500ms. Si no se cumple, el test falla automáticamente como una prueba unitaria, deteniendo despliegues riesgosos.Observabilidad: No lo digas, muéstralo con GrafanaEl ecosistema se completa con Grafana, que nos permite transformar métricas técnicas en visualizaciones de clase mundial.
+                      A través de paneles de control, podemos monitorear en tiempo real la latencia, errores y el consumo de recursos como CPU y RAM. Esta visibilidad es la que permite a los equipos tomar decisiones basadas en datos y no en suposiciones.ConclusiónAdoptar k6 dentro del Ciclo de Vida de Desarrollo de Software (SDLC) nos permite actuar como un "escáner de rendimiento" constante. En un mundo donde cada milisegundo cuenta, nuestra capacidad de automatizar la resiliencia es lo que separa a un producto funcional de uno excepcional.</p>
+                </section>
+        </article>
+    </main>
+</body>
+</html>
