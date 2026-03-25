@@ -3,32 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diana Hidalgo | Portafolio</title>
+    <meta name="Author" content="Karol Hidalgo">
+    <title>Diana Hidalgo | Portafolio Profesional</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
     <style>
         :root { --accent: #a155ff; }
         [data-bs-theme="light"] { --accent: #0d6efd; }
         
-        body { font-family: 'Inter', sans-serif; transition: 0.3s; }
+        body { font-family: 'Inter', sans-serif; transition: 0.3s; scroll-behavior: smooth; }
+        
+        /* Centrado automático en móvil */
+        @media (max-width: 768px) {
+            body { text-align: center !important; }
+            .text-start-md { text-align: center !important; }
+            .d-flex-mobile { justify-content: center !important; }
+        }
+
         .img-hero { width: 160px; height: 160px; object-fit: cover; border-radius: 50%; border: 4px solid var(--accent); margin: 0 auto; display: block; }
         
-        /* Tarjetas */
-        article.project-card {
-            background-color: var(--bs-body-bg);
-            border: 1px solid var(--bs-border-color);
-            border-radius: 20px;
-            transition: 0.4s;
-            overflow: hidden;
-            text-align: center;
-        }
-        article.project-card:hover { transform: translateY(-10px); border-color: var(--accent); }
-        .card-img-top { height: 200px; object-fit: cover; width: 100%; }
+        /* Flip Cards (Efecto Memoria) */
+        .flip-card { background-color: transparent; width: 100%; height: 260px; perspective: 1000px; cursor: pointer; border: none; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flip-card:focus .flip-card-inner, .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; flex-direction: column; border-radius: 20px; padding: 20px; border: 1px solid var(--bs-border-color); }
+        .flip-card-front { background-color: var(--bs-body-tertiary); }
+        .flip-card-back { background-color: var(--accent); color: white; transform: rotateY(180deg); }
+        .flip-card-back img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid white; margin-bottom: 10px; }
 
-        .lang-en, .lang-fr { display: none; }
-        .nav-lang { cursor: pointer; font-weight: bold; color: gray; padding: 0 5px; }
+        /* Estilos Proyectos */
+        article.project-card { background-color: var(--bs-body-bg); border: 1px solid var(--bs-border-color); border-radius: 20px; transition: 0.4s; overflow: hidden; }
+        article.project-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .card-img-top { height: 160px; object-fit: cover; width: 100%; }
+        .border-dashed { border: 2px dashed var(--bs-border-color); border-radius: 20px; min-height: 250px; }
+
+        .lang-en { display: none; }
+        .nav-lang { cursor: pointer; font-weight: bold; color: gray; padding: 0 10px; }
         .nav-lang.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
-         html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
@@ -36,44 +49,56 @@
 <header class="sticky-top bg-body-tertiary border-bottom">
     <nav class="navbar navbar-expand-lg container">
         <section class="container-fluid d-flex justify-content-between align-items-center">
-            <a class="navbar-brand fw-bold" href="#inicio">
-                DIANA<span style="color:var(--accent)">.</span>H
-            </a>
+            <a class="navbar-brand fw-bold" href="#inicio">DIANA<span style="color:var(--accent)">.</span>H</a>
             
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <section class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav small fw-bold text-uppercase">
                     <li class="nav-item">
-                        <a class="nav-link" href="#inicio">Inicio</a>
+                        <a class="nav-link" href="#inicio">
+                            <span class="lang-es">Inicio</span><span class="lang-en">Home</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#sobre-mi">Sobre Mí</a>
+                        <a class="nav-link" href="#sobre-mi">
+                            <span class="lang-es">Sobre Mí</span><span class="lang-en">Bio</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#trayectoria">Trayectoria</a>
+                        <a class="nav-link" href="#trayectoria">
+                            <span class="lang-es">Trayectoria</span><span class="lang-en">Resume</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#proyectos">Proyectos</a>
+                        <a class="nav-link" href="#proyectos">
+                            <span class="lang-es">Proyectos</span><span class="lang-en">Projects</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#articulos">Artículos</a>
+                        <a class="nav-link" href="#articulos">
+                            <span class="lang-es">Artículos</span><span class="lang-en">Articles</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#testimonios">Testimonios</a>
+                        <a class="nav-link" href="#testimonios">
+                            <span class="lang-es">Testimonios</span><span class="lang-en">Testimonials</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contacto">Contacto</a>
+                        <a class="nav-link" href="#contacto">
+                            <span class="lang-es">Contacto</span><span class="lang-en">Contact</span>
+                        </a>
                     </li>
                 </ul>
             </section>
 
-            <section class="d-flex align-items-center gap-2">
+            <section class="d-flex align-items-center gap-2 d-flex-mobile">
                 <span class="nav-lang active" onclick="changeLang('es', this)">ES</span>
                 <span class="nav-lang" onclick="changeLang('en', this)">EN</span>
-                <button class="btn btn-sm border ms-2" id="btnTheme" title="Cambiar Modo">
+                <button class="btn btn-sm border ms-2" id="btnTheme">
                     <i class="bi bi-sun-fill" id="themeIcon"></i>
                 </button>
             </section>
@@ -81,130 +106,210 @@
     </nav>
 </header>
 
-    <main class="container text-center py-5" id="inicio">
-        <section class="mb-5">
-            <img src="https://ca.slack-edge.com/E02KLGDBF9B-U04421AFUL9-a15219b488e9-512" alt="Diana" class="img-hero mb-4">
-            <h1 class="display-4 fw-bold">Diana Carolina Hidalgo Guerrero</h1>
-            <p class="lead text-secondary container col-md-8">
-                <span class="lang-es">Staff Career & Performance @ Globant.</span>
-                <span class="lang-en">Staff Career & Performance @ Globant.</span>
-            </p>
-        </section>
+<main class="container text-center py-5" id="inicio">
+    <section class="mb-5 py-4">
+        <img src="https://ca.slack-edge.com/E02KLGDBF9B-U04421AFUL9-a15219b488e9-512" alt="Diana" class="img-hero mb-4 shadow">
+        <h1 class="display-4 fw-bold">Diana Carolina Hidalgo Guerrero</h1>
+        <p class="lead text-secondary container col-md-8 mx-auto">
+            <span class="lang-es">Staff Career & Performance @ Globant | QC Analyst | Java Developer.</span>
+            <span class="lang-en">Staff Career & Performance @ Globant | QC Analyst | Java Developer.</span>
+        </p>
+    </section>
 
-        <section id="proyectos" class="row row-cols-1 row-cols-md-2 g-5 justify-content-center py-5">
-            <article class="col" style="max-width: 500px;">
-                <article class="project-card h-100 shadow">
-                    <img src="https://cdn.pixabay.com/photo/2023/08/12/08/46/ai-generated-8185136_1280.png" class="card-img-top" alt="Project 1">
-                    <section class="card-body p-4">
-                        <h3 class="h4 fw-bold">CARRERAS SPORT 2025</h3>
-                        <a href="https://karol2324.github.io/CARRERAS-SPORT-2025/" target="_blank" class="btn btn-primary w-100 rounded-pill mt-3">VISITAR</a>
-                    </section>
-                </article>
-            </article>
-
-            <article class="col" style="max-width: 500px;">
-                <article class="project-card h-100 shadow">
-                    <img src="https://cdn.pixabay.com/photo/2017/04/27/08/18/champagne-2264811_1280.jpg" class="card-img-top" alt="Project 2">
-                    <section class="card-body p-4">
-                        <h3 class="h4 fw-bold">PROYECTO INTEGRADOR</h3>
-                        <a href="https://karol2324.github.io/PROYECTO-INTEGRADOR/" target="_blank" class="btn btn-primary w-100 rounded-pill mt-3">VISITAR</a>
-                    </section>
-                </article>
-            </article>
-        </section>
-        <section id="sobre-mi" class="container py-5 border-top border-secondary">
+<section id="sobre-mi" class="py-5 border-top border-secondary">
     <h2 class="display-6 fw-bold mb-4" style="color: var(--accent)">
         <span class="lang-es">Perfil Profesional</span><span class="lang-en">Professional Profile</span>
     </h2>
     <p class="lead text-secondary mx-auto col-lg-10">
-        <span class="lang-es">Profesional con 9 años de experiencia integral, actualmente enfocada en el rol de <strong>QC Analyst</strong> con formación especializada en <strong>ISTQB Foundation Level</strong>. Cuento con una sólida trayectoria en gestión de sistemas y aseguramiento de procesos[cite: 4]. Mi perfil técnico se potencia con estudios avanzados en <strong>Java</strong>, Arquitectura de Software y Power BI, con el objetivo de integrar el control de calidad en proyectos de software escalables y metodologías Ágiles[cite: 5, 7].</span>
+        <span class="lang-es">
+            Profesional con 10 años de experiencia integral, actualmente desempeñándome como <strong>Staff en Globant</strong>. Especialista en la administración de <strong>Udemy Business</strong>, soporte técnico en <strong>Jira</strong> y creación de contenido educativo para <strong>Globant University</strong>. Con formación en <strong>Java</strong> e <strong>ISTQB</strong>, mi objetivo es fusionar la gestión de procesos y el análisis <strong>QC</strong> bajo metodologías Ágiles.
+        </span>
+        <span class="lang-en">
+            Professional with 10 years of comprehensive experience, currently working as <strong>Staff at Globant</strong>. Specialist in <strong>Udemy Business</strong> administration, technical support via <strong>Jira</strong>, and educational content creation for <strong>Globant University</strong>. Trained in <strong>Java</strong> and <strong>ISTQB</strong>, my goal is to merge process management and <strong>QC</strong> analysis under Agile methodologies.
+        </span>
     </p>
 </section>
 
 <section id="trayectoria" class="container py-5">
     <section class="row g-5 justify-content-center text-start">
+    
+        <article class="col-md-5">
+    <h3 class="h4 fw-bold mb-4 text-uppercase border-bottom pb-2" style="border-color: #ff4d4d !important;">
+        <span class="lang-es">Experiencia</span><span class="lang-en">Experience</span>
+    </h3>
+    <ul class="list-unstyled">
         
-        <article class="col-md-5">
-            <h3 class="h4 fw-bold mb-4 text-uppercase border-bottom pb-2" style="color: #ff4d4d;">
-                <span class="lang-es">Experiencia</span><span class="lang-en">Experience</span>
-            </h3>
-            <ul class="list-unstyled">
-                <li class="mb-4">
-                    <h4 class="h6 fw-bold mb-0 text-white text-uppercase">Encuestadora</h4>
-                    <small class="text-success">Geografía y Sistemas | Oct 2024 - Dic 2024 </small>
-                    <p class="small text-secondary mt-1">Realización de encuestas puerta a puerta en hogares y comercios de Bogotá D.C.</p>
-                </li>
-                <li class="mb-4">
-                    <h4 class="h6 fw-bold mb-0 text-white text-uppercase">Asistente Notarial</h4>
-                    <small class="text-secondary">Notaría Única de Puerto Gaitán | 2014 - 2018 </small>
-                    <p class="small text-secondary mt-1">Gestión de talento humano, manejo de plataformas institucionales, contabilidad y atención al cliente.</p>
-                </li>
-            </ul>
-        </article>
+        <li class="mb-4">
+            <h4 class="h6 fw-bold mb-0 text-danger text-uppercase">
+                <span class="lang-es">Staff - College Trainee</span>
+                <span class="lang-en">Staff - College Trainee</span>
+            </h4>
+            <small class="text-success">Globant | <span class="lang-es">Mayo 2025 - Actualidad</span><span class="lang-en">May 2025 - Present</span></small>
+            <p class="small text-secondary mt-1">
+                <span class="lang-es">
+                    Administración de licencias <strong>Udemy Business</strong>, soporte en <strong>Jira</strong> y gestión de contenido educativo en <strong>Globant University</strong>.
+                </span>
+                <span class="lang-en">
+                    <strong>Udemy Business</strong> license administration, <strong>Jira</strong> support, and educational content management at <strong>Globant University</strong>.
+                </span>
+            </p>
+        </li>
+
+        <li class="mb-4">
+            <h4 class="h6 fw-bold mb-0 text-danger text-uppercase">
+                <span class="lang-es">QC Analyst</span>
+                <span class="lang-en">QC Analyst</span>
+            </h4>
+            <small class="text-secondary">Globant | <span class="lang-es">Sept 2022 - Ene 2023</span><span class="lang-en">Sep 2022 - Jan 2023</span></small>
+            <p class="small text-secondary mt-1">
+                <span class="lang-es">Aseguramiento de calidad de software y ejecución de pruebas siguiendo metodologías ágiles.</span>
+                <span class="lang-en">Software quality assurance and test execution following Agile methodologies.</span>
+            </p>
+        </li>
+
+        <li class="mb-4">
+            <h4 class="h6 fw-bold mb-0 text-danger text-uppercase">
+                <span class="lang-es">Encuestadora</span><span class="lang-en">Surveyor</span>
+            </h4>
+            <small class="text-secondary">Geografía y Sistemas | 2024 - 2025 </small>
+            <p class="small text-secondary mt-1">
+                <span class="lang-es">Recolección de datos técnicos y comerciales en Bogotá D.C.</span>
+                <span class="lang-en">Technical and commercial data collection in Bogotá D.C.</span>
+            </p>
+        </li>
+
+        <li class="mb-4">
+            <h4 class="h6 fw-bold mb-0 text-danger text-uppercase">
+                <span class="lang-es">Asistente Notarial</span><span class="lang-en">Notary Assistant</span>
+            </h4>
+            <small class="text-secondary">Notaría Única Pto. Gaitán | 2014 - 2018</small>
+            <p class="small text-secondary mt-1">
+                <span class="lang-es">Gestión de bases de datos, facturación y autenticación biométrica.</span>
+                <span class="lang-en">Database management, billing, and biometric authentication.</span>
+            </p>
+        </li>
+    </ul>
+</article>
 
         <article class="col-md-5">
-            <h3 class="h4 fw-bold mb-4 text-uppercase border-bottom pb-2" style="color: var(--accent);">
-                <span class="lang-es">Educación & Certificaciones</span><span class="lang-en">Education</span>
+            <h3 class="h4 fw-bold mb-4 text-uppercase border-bottom pb-2" style="border-color: var(--accent) !important;">
+                <span class="lang-es">Educación & Certificaciones</span><span class="lang-en">Education & Certifications</span>
             </h3>
             <ul class="list-unstyled">
                 <li class="mb-3">
-                    <h4 class="h6 fw-bold mb-0 text-white text-uppercase">Técnico Auxiliar de Sistemas</h4>
-                    <small class="text-success">CESDE | En curso </small>
+                    <h4 class="h6 fw-bold mb-0 text-primary text-uppercase">
+                        <span class="lang-es">Técnico en Auxiliar de Sistemas</span><span class="lang-en">Systems Assistant Technician</span>
+                    </h4>
+                    <small class="text-success">
+                        <span class="lang-es">CESDE | En curso</span><span class="lang-en">CESDE | In progress</span>
+                    </small>
                 </li>
                 <li class="mb-3">
-                    <h4 class="h6 fw-bold mb-0 text-white text-uppercase">Máster en Java y Arquitectura</h4>
-                    <small class="text-secondary">Platzi & Udemy Business | 2025</small>
+                    <h4 class="h6 fw-bold mb-0 text-primary text-uppercase">
+                        <span class="lang-es">Máster en Java</span><span class="lang-en">Java Master</span>
+                    </h4>
+                    <small class="text-secondary">
+                        <span class="lang-es">Udemy Business | 2025</span><span class="lang-en">Udemy Business | 2025</span>
+                    </small>
                 </li>
                 <li class="mb-3">
-                    <h4 class="h6 fw-bold mb-0 text-white text-uppercase">ISTQB Foundation Level V4.0</h4>
-                    <small class="text-secondary">Udemy Business | En curso </small>
+                    <h4 class="h6 fw-bold mb-0 text-primary text-uppercase">ISTQB Foundation Level V4.0</h4>
+                    <small class="text-secondary">
+                        <span class="lang-es">Udemy Business | En curso</span><span class="lang-en">Udemy Business | In progress</span>
+                    </small>
                 </li>
                 <li class="mb-3">
-                    <h4 class="h6 fw-bold mb-0 text-white text-uppercase">Certificación Scrum Master</h4>
-                    <small class="text-secondary">Udemy Business | En curso </small>
+                    <h4 class="h6 fw-bold mb-0 text-primary text-uppercase">
+                        <span class="lang-es">Certificación Scrum Master</span><span class="lang-en">Scrum Master Certification</span>
+                    </h4>
+                    <small class="text-secondary">
+                        <span class="lang-es">Udemy Business | En curso</span><span class="lang-en">Udemy Business | In progress</span>
+                    </small>
                 </li>
             </ul>
         </article>
     </section>
 </section>
 
-        <article class="col-md-5">
-            <h3 class="h4 fw-bold mb-4 text-uppercase border-bottom pb-2" style="color: var(--accent);">
-                <span class="lang-es">Educación</span><span class="lang-en">Education</span>
-            </h3>
-            <ul class="list-unstyled">
-                <li class="mb-4">
-                    <h4 class="h6 fw-bold mb-0">Análisis y Desarrollo de Software</h4>
-                    <small class="text-success">CESDE / SENA</small>
-                    <p class="small text-secondary mt-1">Enfoque en lenguajes de programación modernos y metodologías ágiles.</p>
-                </li>
-                <li class="mb-4">
-                    <h4 class="h6 fw-bold mb-0">Especialista en QA Automation</h4>
-                    <small class="text-secondary">Certificación Técnica</small>
-                    <p class="small text-secondary mt-1">Automatización de pruebas y control de calidad de software.</p>
-                </li>
-            </ul>
-        </article>
-    </section>
-</section>
+<article class="col-md-5">
+    <h3 class="h4 fw-bold mb-4 text-uppercase border-bottom pb-2" style="color: var(--accent);">
+        <span class="lang-es">Educación Formal</span><span class="lang-en">Formal Education</span>
+    </h3>
+    <ul class="list-unstyled">
+        <li class="mb-4">
+            <h4 class="h6 fw-bold mb-0">
+                <span class="lang-es">Técnico en Auxiliar de Sistemas</span>
+                <span class="lang-en">Systems Assistant Technician</span>
+            </h4>
+            <small class="text-success">CESDE / SENA</small>
+            <p class="small text-secondary mt-1">
+                <span class="lang-es">Enfoque en lenguajes de programación modernos y metodologías ágiles.</span>
+                <span class="lang-en">Focus on modern programming languages and Agile methodologies.</span>
+            </p>
+        </li>
+        <li class="mb-4">
+            <h4 class="h6 fw-bold mb-0">
+                <span class="lang-es">Técnico en Procesamiento de Pruebas para Software</span>
+                <span class="lang-en">Software Testing Processes Technician</span>
+            </h4>
+            <small class="text-secondary">SENA</small>
+            <p class="small text-secondary mt-1">
+                <span class="lang-es">Automatización de pruebas y control de calidad de software en entornos empresariales.</span>
+                <span class="lang-en">Test automation and software quality control in enterprise environments.</span>
+            </p>
+        </li>
+    </ul>
+</article>
 
-<section id="testimonios" class="py-5 bg-body-tertiary">
-    <section class="container text-center">
-        <h2 class="h4 fw-bold mb-5 text-uppercase tracking-widest text-secondary">Testimonios</h2>
-        <section class="row g-4 justify-content-center">
-            <article class="col-md-4">
-                <blockquote class="blockquote p-4 border rounded-4 bg-body shadow-sm">
-                    <p class="fs-6 italic text-secondary">"Diana tiene una capacidad analítica excepcional para gestionar el aprendizaje a gran escala."</p>
-                    <footer class="blockquote-footer mt-2 small">Líder de Talent @ Globant</footer>
-                </blockquote>
+<section id="proyectos" class="py-5 border-top border-secondary">
+    <h2 class="display-6 fw-bold mb-5 text-center">
+        <span class="lang-es">Proyectos</span><span class="lang-en">Projects</span>
+    </h2>
+
+    <section class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 justify-content-center">
+        <article class="col" style="max-width: 500px;">
+            <article class="project-card h-100 shadow">
+                <img src="https://cdn.pixabay.com/photo/2023/08/12/08/46/ai-generated-8185136_1280.png" class="card-img-top" alt="Carreras Sport 2025">
+                <section class="card-body p-4">
+                    <h3 class="h5 fw-bold text-uppercase">CARRERAS SPORT 2025</h3>
+                    <p class="small text-secondary">
+                        <span class="lang-es">Plataforma diseñada exclusivamente para los apasionados del deporte motor.</span>
+                        <span class="lang-en">A platform exclusively designed for motorsport enthusiasts.</span>
+                    </p>
+                    <a href="https://karol2324.github.io/CARRERAS-SPORT-2025/" target="_blank" class="btn btn-primary w-100 rounded-pill mt-2">
+                        <span class="lang-es">VISITAR</span><span class="lang-en">VISIT</span>
+                    </a>
+                </section>
             </article>
-            <article class="col-md-4">
-                <blockquote class="blockquote p-4 border rounded-4 bg-body shadow-sm">
-                    <p class="fs-6 italic text-secondary">"Su dominio de Java y QC eleva la calidad de cualquier proyecto integrador."</p>
-                    <footer class="blockquote-footer mt-2 small">Instructor Técnico</footer>
-                </blockquote>
+        </article>
+
+        <article class="col" style="max-width: 500px;">
+            <article class="project-card h-100 shadow">
+                <img src="https://cdn.pixabay.com/photo/2017/04/27/08/18/champagne-2264811_1280.jpg" class="card-img-top" alt="Proyecto Integrador">
+                <section class="card-body p-4">
+                    <h3 class="h5 fw-bold text-uppercase">PROYECTO INTEGRADOR</h3>
+                    <p class="small text-secondary">
+                        <span class="lang-es">E-commerce para un salón de onces que fusiona la pasión por los gatitos y la velocidad.</span>
+                        <span class="lang-en">E-commerce for a tea room that blends a passion for kittens and speed.</span>
+                    </p>
+                    <a href="https://karol2324.github.io/PROYECTO-INTEGRADOR/" target="_blank" class="btn btn-primary w-100 rounded-pill mt-2">
+                        <span class="lang-es">VISITAR</span><span class="lang-en">VISIT</span>
+                    </a>
+                </section>
             </article>
-        </section>
+        </article>
+
+        <article class="col" style="max-width: 500px;">
+            <article class="h-100 border-dashed d-flex align-items-center justify-content-center p-4 text-muted small">
+                <span class="lang-es text-uppercase">Próximamente</span><span class="lang-en text-uppercase">Coming Soon</span>
+            </article>
+        </article>
+
+        <article class="col" style="max-width: 500px;">
+            <article class="h-100 border-dashed d-flex align-items-center justify-content-center p-4 text-muted small">
+                <span class="lang-es text-uppercase">Próximamente</span><span class="lang-en text-uppercase">Coming Soon</span>
+            </article>
+        </article>
     </section>
 </section>
 
@@ -222,79 +327,178 @@
             </section>
         </section>
 
-        <section class="container py-4 text-center">
+   <section id="testimonios" class="py-5 bg-body-tertiary rounded-5 my-5 shadow-sm">
+    <h2 class="h4 fw-bold mb-5 text-uppercase tracking-widest text-body-emphasis text-center">
+        <span class="lang-es">Testimonios</span><span class="lang-en">Testimonials</span>
+    </h2>
+    
+    <section class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 px-3">
+        <article class="col">
+            <button class="flip-card">
+                <section class="flip-card-inner">
+                    <section class="flip-card-front">
+                        <i class="bi bi-quote fs-1 text-secondary mb-2"></i>
+                        <p class="small italic text-body-secondary">
+                            <span class="lang-es">"Gracias por compartir conocimiento en la charla de k6 y Grafana."</span>
+                            <span class="lang-en">"Thank you for sharing your knowledge in the k6 and Grafana talk."</span>
+                        </p>
+                    </section>
+                    <section class="flip-card-back">
+                        <img src="https://api.starmeup.com/starmeup-api/v2/image/7PjiYrNxGO_png/250/250/1" alt="Jesús Leyva">
+                        <h4 class="h6 fw-bold mb-0">Jesús Leyva</h4>
+                        <p class="x-small">QC Analyst</p>
+                    </section>
+                </section>
+            </button>
+        </article>
+
+        <article class="col">
+            <button class="flip-card">
+                <section class="flip-card-inner">
+                    <section class="flip-card-front">
+                        <i class="bi bi-quote fs-1 text-secondary mb-2"></i>
+                        <p class="small italic text-body-secondary">
+                            <span class="lang-es">"Por tu esfuerzo y dedicación, demostrando que puedes enfrentar cualquier desafío."</span>
+                            <span class="lang-en">"For your effort and dedication, showing that you can face any challenge."</span>
+                        </p>
+                    </section>
+                    <section class="flip-card-back">
+                        <img src="https://api.starmeup.com/starmeup-api/v2/image/qsbqvfuovhrbroayvpsd_png/250/250/1" alt="Jimmy Rodriguez">
+                        <h4 class="h6 fw-bold mb-0">Jimmy Rodriguez</h4>
+                        <p class="x-small">QC Analyst</p>
+                    </section>
+                </section>
+            </button>
+        </article>
+
+        <article class="col">
+            <button class="flip-card">
+                <section class="flip-card-inner">
+                    <section class="flip-card-front">
+                        <i class="bi bi-quote fs-1 text-secondary mb-2"></i>
+                        <p class="small italic text-body-secondary">
+                            <span class="lang-es">"Excellence in your Work
+                            Estrellita por siempre tener en cuenta mis consejos y estar siempre dispuestos aprender y hacer crecer su carrera dia a dia! 
+                            Agradecida de poder guiarte en este camino 
+                            #YouRock"</span>
+                            <span class="lang-en">Excellence in your Work
+                            A gold star for always taking my advice to heart and being so willing to learn and grow your career day by day! 
+                            I'm truly grateful to be able to guide you on this path 
+                            #YouRock</span>
+                        </p>
+                    </section>
+                    <section class="flip-card-back">
+                        <img src="https://api.starmeup.com/starmeup-api/v2/image/kufidqdqxlexythsjdfw_png/250/250/1" alt="Feedback">
+                        <h4 class="h6 fw-bold mb-0">Yera Gonzalez</h4>
+                        <p class="x-small">QC Analyst</p>
+                    </section>
+                </section>
+            </button>
+        </article>
+
+        <article class="col">
+            <button class="flip-card">
+                <section class="flip-card-inner">
+                    <section class="flip-card-front">
+                        <i class="bi bi-quote fs-1 text-secondary mb-2"></i>
+                        <p class="small italic text-body-secondary">
+                            <span class="lang-es">"Excelente gestión de licencias y soporte en Udemy Business."</span>
+                            <span class="lang-en">"Excellent license management and Udemy Business support."</span>
+                        </p>
+                    </section>
+                    <section class="flip-card-back">
+                        <img src="https://api.starmeup.com/starmeup-api/v2/image/qdxxiekgzvavgotydzzf_png/250/250/1" alt="Feedback">
+                        <h4 class="h6 fw-bold mb-0">Jael Castañeda</h4>
+                        <p class="x-small">Learning Lead</p>
+                    </section>
+                </section>
+            </button>
+        </article>
+    </section>
+</section>
+
+       <section class="container py-4 text-center">
     <h2 class="h6 text-uppercase text-secondary tracking-widest mb-4">Core Skills</h2>
     <section class="d-flex flex-wrap justify-content-center gap-3">
         <span class="badge rounded-pill border border-success text-success p-2 px-3">ISTQB Foundation </span>
         <span class="badge rounded-pill border border-primary text-primary p-2 px-3">Java Expert</span>
         <span class="badge rounded-pill border border-info text-info p-2 px-3">Power BI </span>
         <span class="badge rounded-pill border border-warning text-warning p-2 px-3">Agile/Scrum </span>
+        <span class="badge rounded-pill border border-danger text-danger p-2 px-3">Fundamentos de Arquitectura de Software </span> 
     </section>
 </section>
 
-        <footer id="contacto" class="py-5 mt-5 border-top border-secondary bg-body-tertiary">
+    <footer id="contacto" class="py-5 mt-5 border-top border-secondary bg-body-tertiary">
         <section class="container text-center">
-            
-            <section class="mb-5">
-                <h3 class="h6 text-uppercase mb-3 tracking-widest text-secondary">
-                    <span class="lang-es">Escanéame</span>
-                    <span class="lang-en">Scan Me</span>
-                </h3>
-                <figure class="d-inline-block p-3 bg-white rounded-4 shadow-sm">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://github.com/Karol2324&color=a155ff" 
-                         alt="QR GitHub Diana Hidalgo" 
-                         style="width: 120px; height: 120px;">
-                </figure>
+            <button class="btn btn-lg btn-danger px-5 rounded-pill fw-bold shadow mb-4" data-bs-toggle="modal" data-bs-target="#contactModal">
+                <span class="lang-es">SOLICITAR INFORMACIÓN</span><span class="lang-en">GET IN TOUCH</span>
+            </button>
+            <section class="mb-4">
+                <figure class="d-inline-block p-3 bg-white rounded-4 shadow-sm"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://github.com/Karol2324&color=a155ff" alt="QR" style="width:100px;"></figure>
             </section>
-
-            <h2 class="display-5 fw-bold mb-4" style="color: #ff4d4d;">
-                karolhg95@gmail.com
-            </h2>
-
-            <nav class="d-flex justify-content-center gap-4 fs-2 mb-4">
-                <a href="https://www.linkedin.com/in/carolina-hidalgo-5362221b9"target="_blank" class="text-body" title="LinkedIn">
-                    <i class="bi bi-linkedin"></i>
-                </a>
-                <a href="https://www.instagram.com/karol.hidalgo.7?igsh=MXZlbnJ4Z28xMTZocw==" target="_blank" class="text-body" title="Instagram">
-                    <i class="bi bi-instagram"></i>
-                </a>
-                <a href="https://github.com/Karol2324" target="_blank" class="text-body" title="GitHub">
-                    <i class="bi bi-github"></i>
-                </a>
+            <nav class="d-flex justify-content-center gap-4 fs-2 d-flex-mobile">
+                <a href="https://linkedin.com/in/carolina-hidalgo-5362221b9" target="_blank" class="text-body"><i class="bi bi-linkedin"></i></a>
+                <a href="https://wa.me/573234682588" target="_blank" class="text-success"><i class="bi bi-whatsapp"></i></a>
+                <a href="https://github.com/Karol2324" target="_blank" class="text-body"><i class="bi bi-github"></i></a>
             </nav>
-
-            <section class="pt-4 border-top border-secondary-subtle">
-                <p class="small text-secondary mb-0">
-                    <span class="lang-es">© 2026 Diana Carolina Hidalgo Guerrero — Diseñado con Bootstrap 5.3 </span>
-                    <span class="lang-en">© 2026 Diana Carolina Hidalgo Guerrero — Designed with Bootstrap 5.3 </span>
-                </p>
-                <p class="x-small text-muted mt-1" style="font-size: 0.7rem;">
-                    Staff Career Y Performance | QC Analyst | Java Developer
-                </p>
-            </section>
-
+            <p class="small text-secondary mt-4">© 2026 Diana Carolina Hidalgo — Bootstrap 5</p>
         </section>
     </footer>
-    </main>
+</main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function changeLang(lang, element) {
-            document.querySelectorAll('.lang-es, .lang-en, .lang-fr').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.lang-' + lang).forEach(el => el.style.display = 'block');
-            document.querySelectorAll('.nav-lang').forEach(el => el.classList.remove('active'));
-            element.classList.add('active');
-        }
+<section class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+    <section class="modal-dialog modal-dialog-centered">
+        <section class="modal-content bg-body-tertiary">
+            <header class="modal-header border-0">
+                <h5 class="modal-title fw-bold">
+                    <span class="lang-es">CONTACTO</span><span class="lang-en">CONTACT</span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </header>
+            <section class="modal-body p-4 text-start">
+                <form>
+                    <section class="mb-3">
+                        <label class="form-label small fw-bold">
+                            <span class="lang-es">Nombre</span><span class="lang-en">Name</span>
+                        </label>
+                        <input type="text" class="form-control rounded-3" required>
+                    </section>
 
-        const btnTheme = document.getElementById('btnTheme');
-        btnTheme.addEventListener('click', () => {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-bs-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-bs-theme', newTheme);
-            btnTheme.innerHTML = newTheme === 'dark' ? '<i class="bi bi-brightness-high-fill"></i>' : '<i class="bi bi-moon-fill"></i>';
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                    <section class="mb-3">
+                        <label class="form-label small fw-bold">Email</label>
+                        <input type="email" class="form-control rounded-3" required>
+                    </section>
+
+                    <section class="mb-3">
+                        <label class="form-label small fw-bold">
+                            <span class="lang-es">Mensaje</span><span class="lang-en">Message</span>
+                        </label>
+                        <textarea class="form-control rounded-3" rows="4" required placeholder=""></textarea>
+                    </section>
+
+                    <button type="submit" class="btn btn-primary w-100 fw-bold rounded-pill">
+                        <span class="lang-es">ENVIAR</span><span class="lang-en">SEND</span>
+                    </button>
+                </form>
+            </section>
+        </section>
+    </section>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function changeLang(lang, el) {
+        document.querySelectorAll('.lang-es, .lang-en').forEach(i => i.style.display = 'none');
+        document.querySelectorAll('.lang-' + lang).forEach(i => i.style.display = 'inline-block');
+        document.querySelectorAll('.nav-lang').forEach(n => n.classList.remove('active'));
+        el.classList.add('active');
+    }
+    document.getElementById('btnTheme').addEventListener('click', () => {
+        const html = document.documentElement;
+        const theme = html.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-bs-theme', theme);
+        document.getElementById('themeIcon').className = theme === 'dark' ? 'bi bi-brightness-high-fill' : 'bi bi-moon-fill';
+    });
+</script>
 </body>
 </html>
