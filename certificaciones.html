@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Karol Hidalgo">
+    <title>Certificaciones | Diana Hidalgo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+       :root { 
+    --accent: #a155ff; 
+    --soft: #ff4d4d; 
+}
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    transition: background 0.3s; 
+}
+
+/* Idiomas y Navegación */
+.nav-lang { cursor: pointer; font-weight: bold; color: gray; }
+.nav-lang.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
+.lang-en { display: none; }
+.x-small { font-size: 0.7rem; }
+
+/* Tarjetas de Certificados */
+.cert-card { 
+    transition: transform 0.3s; 
+    border: 1px solid var(--bs-border-color); 
+}
+
+/* Efecto Hover: Sube la tarjeta y agranda la imagen ligeramente */
+.cert-card:hover { 
+    transform: translateY(-5px); 
+    border-color: var(--accent); 
+}
+
+.cert-card img { 
+    transition: transform 0.3s ease; 
+    cursor: zoom-in; 
+}
+
+.cert-card:hover img { 
+    transform: scale(1.05); 
+}
+
+/* Visor Semántico Nativo (Tag <dialog>) */
+#visorCertificado {
+    border: none;
+    background: transparent;
+    padding: 0;
+    max-width: 90vw;
+    outline: none;
+}
+
+/* Oscurece el fondo cuando el visor está abierto */
+#visorCertificado::backdrop {
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+}
+
+/* Estilo de la imagen dentro del visor */
+.img-grande {
+    display: block;
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(161, 85, 255, 0.4);
+    margin: 0 auto;
+}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm sticky-top">
+        <section class="container">
+            <a class="navbar-brand fw-bold" href="index.html" style="color: var(--accent);">DIANA HIDALGO</a>
+            <section class="d-flex align-items-center gap-3 ms-auto">
+                <section class="d-flex gap-2 me-2">
+                    <span class="nav-lang active" onclick="changeLang('es', this)">ES</span>
+                    <span class="nav-lang" onclick="changeLang('en', this)">EN</span>
+                </section>
+                <button class="btn btn-sm border-0" id="btnTheme">
+                    <i class="bi bi-sun-fill" id="themeIcon"></i>
+                </button>
+                <a href="index.html" class="btn btn-sm btn-outline-secondary rounded-pill">
+                    <span class="lang-es">Volver</span><span class="lang-en">Back</span>
+                </a>
+            </section>
+        </section>
+    </nav>
+
+    <main class="container py-5">
+        <header class="text-center mb-5">
+            <h1 class="display-5 fw-bold text-body-emphasis text-uppercase">
+                <span class="lang-es">Mis Certificaciones</span><span class="lang-en">My Certifications</span>
+            </h1>
+            <p class="text-secondary">
+                <span class="lang-es">Respaldo técnico y crecimiento profesional continuo</span>
+                <span class="lang-en">Technical endorsement and continuous professional growth</span>
+            </p>
+        </header>
+
+       <section class="row row-cols-2 row-cols-sm-3 row-cols-md-3 g-3">
+    <article class="col">
+        <figure class="cert-card h-100 p-2 bg-body-tertiary rounded-3 shadow-sm text-center">
+            <img src="https://github.com/Karol2324/PORTAFOLIO-KAROL-HIDALGO/blob/main/ARQUITECTURA%20DE%20SOFTWARE_page-0001.jpg?raw=true" class="img-fluid rounded mb-2" alt="Certificado 1" onclick="abrirVisor(this.src)">
+            <figcaption class="x-small fw-bold text-uppercase">FUNDAMENTOS DE ARQUITECTURA DE SOFTWARE</figcaption>
+        </figure>
+    </article>
+
+    <article class="col">
+        <figure class="cert-card h-100 p-2 bg-body-tertiary rounded-3 shadow-sm text-center">
+            <img src="https://github.com/Karol2324/PORTAFOLIO-KAROL-HIDALGO/blob/main/FUNDAMENTOS%20DE%20PYTHON_page-0001.jpg?raw=true" class="img-fluid rounded mb-2" alt="Certificado 2" onclick="abrirVisor(this.src)">
+            <figcaption class="x-small fw-bold text-uppercase">FUNDAMENTOS DE PYTHON</figcaption>
+        </figure>
+    </article>
+
+    <article class="col">
+        <figure class="cert-card h-100 p-2 bg-body-tertiary rounded-3 shadow-sm text-center">
+            <img src="https://github.com/Karol2324/PORTAFOLIO-KAROL-HIDALGO/blob/main/INTRODUCCION%20A%20LA%20IA_page-0001.jpg?raw=true" class="img-fluid rounded mb-2" alt="Certificado 3" onclick="abrirVisor(this.src)">
+            <figcaption class="x-small fw-bold text-uppercase">INTRODUCCION A LA IA</figcaption>
+        </figure>
+    </article>
+
+    <article class="col">
+        <figure class="cert-card h-100 p-2 bg-body-tertiary rounded-3 shadow-sm text-center">
+            <img src="https://github.com/Karol2324/PORTAFOLIO-KAROL-HIDALGO/blob/main/POWER%20BI_page-0001.jpg?raw=true" class="img-fluid rounded mb-2" alt="Certificado 4" onclick="abrirVisor(this.src)">
+            <figcaption class="x-small fw-bold text-uppercase">POWER BI</figcaption>
+        </figure>
+    </article>
+
+    <article class="col">
+        <figure class="cert-card h-100 p-2 bg-body-tertiary rounded-3 shadow-sm text-center">
+            <img src="https://github.com/Karol2324/PORTAFOLIO-KAROL-HIDALGO/blob/main/PROGRAMACION%20BASICA_page-0001.jpg?raw=true" class="img-fluid rounded mb-2" alt="Certificado 5" onclick="abrirVisor(this.src)">
+            <figcaption class="x-small fw-bold text-uppercase">PROGRAMACION BASICA</figcaption>
+        </figure>
+    </article>
+
+    <article class="col">
+        <figure class="cert-card h-100 p-2 bg-body-tertiary rounded-3 shadow-sm text-center">
+            <img src="https://github.com/Karol2324/PORTAFOLIO-KAROL-HIDALGO/blob/main/ScrumFundamentalsCertified-DianaCarolinaHidalgoGuerrero-1094771%20(1)_page-0001.jpg?raw=true" class="img-fluid rounded mb-2" alt="Certificado 6" onclick="abrirVisor(this.src)">
+            <figcaption class="x-small fw-bold text-uppercase">SCRUM FUNDAMENTALS</figcaption>
+        </figure>
+    </article>
+</section>
+
+<section class="row row-cols-2 row-cols-sm-3 row-cols-md-3 g-3">
+    <article class="col">
+        <figure class="cert-card h-100 p-2 bg-body-tertiary rounded-3 shadow-sm text-center">
+            <img src="https://github.com/Karol2324/PORTAFOLIO-KAROL-HIDALGO/blob/main/CATEDRA%20DEL%20EMPRENDEDOR_page-0001.jpg?raw=true" class="img-fluid rounded mb-2" alt="Soft 1" onclick="abrirVisor(this.src)">
+            <figcaption class="x-small fw-bold text-uppercase">CATEDRA DEL EMPREDEDOR</figcaption>
+        </figure>
+    </article>
+
+    <article class="col">
+        <figure class="cert-card h-100 p-2 bg-body-tertiary rounded-3 shadow-sm text-center">
+            <img src="https://github.com/Karol2324/PORTAFOLIO-KAROL-HIDALGO/blob/main/GESTION%20DE%20LAS%20EMOCIONES_page-0001.jpg?raw=true" class="img-fluid rounded mb-2" alt="Soft 2" onclick="abrirVisor(this.src)">
+            <figcaption class="x-small fw-bold text-uppercase">GESTION DE LAS EMOCIONES</figcaption>
+        </figure>
+    </article>
+
+    <article class="col">
+        <figure class="cert-card h-100 p-2 bg-body-tertiary rounded-3 shadow-sm text-center">
+            <img src="https://github.com/Karol2324/PORTAFOLIO-KAROL-HIDALGO/blob/main/REDACCION%20Y%20ORTOGRAFIA_page-0001.jpg?raw=true" class="img-fluid rounded mb-2" alt="Soft 3" onclick="abrirVisor(this.src)">
+            <figcaption class="x-small fw-bold text-uppercase">REDACCION Y ORTOGRAFIA</figcaption>
+        </figure>
+    </article>
+</section>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Cambio de Idioma
+        function changeLang(lang, el) {
+            document.querySelectorAll('.lang-es, .lang-en').forEach(i => i.style.display = 'none');
+            document.querySelectorAll('.lang-' + lang).forEach(i => i.style.display = 'inline-block');
+            document.querySelectorAll('.nav-lang').forEach(n => n.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        // Cambio de Tema
+        const btnTheme = document.getElementById('btnTheme');
+        const themeIcon = document.getElementById('themeIcon');
+        btnTheme.addEventListener('click', () => {
+            const html = document.documentElement;
+            const newTheme = html.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-bs-theme', newTheme);
+            themeIcon.classList.replace(newTheme === 'light' ? 'bi-sun-fill' : 'bi-moon-fill', newTheme === 'light' ? 'bi-moon-fill' : 'bi-sun-fill');
+        });
+        function abrirVisor(url) {
+    const visor = document.getElementById('visorCertificado');
+    const imagen = document.getElementById('imagenFull');
+    imagen.src = url;
+    visor.showModal(); // Comando nativo de HTML5 para abrir el diálogo
+}
+    </script>
+    <dialog id="visorCertificado">
+    <section class="d-flex flex-column align-items-center">
+        <img src="" id="imagenFull" class="img-grande" alt="Certificado ampliado">
+        <button type="button" class="btn btn-light mt-3 rounded-pill fw-bold" onclick="this.closest('dialog').close()">
+            <span class="lang-es">Cerrar</span><span class="lang-en">Close</span>
+        </button>
+    </section>
+</dialog>
+</body>
+</html>
