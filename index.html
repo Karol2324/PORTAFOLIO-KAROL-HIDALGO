@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Author" content="Karol Hidalgo">
-    <title>Diana Hidalgo | Portafolio Profesional</title>
-    
+    <title>Diana Hidalgo | Portafolio Profesional</title> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     
@@ -47,63 +46,58 @@
 <body>
 
 <header class="sticky-top bg-body-tertiary border-bottom">
-    <nav class="navbar navbar-expand-lg container">
-        <section class="container-fluid d-flex justify-content-between align-items-center">
-            <a class="navbar-brand fw-bold" href="#inicio">DIANA<span style="color:var(--accent)">.</span>H</a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm sticky-top">
+    <section class="container">
+        <a class="navbar-brand fw-bold" href="index.html" style="color: var(--accent);">
+            DIANA HIDALGO
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <section class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center gap-2">
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="#sobre-mi">
+                        <span class="lang-es">Sobre Mí</span><span class="lang-en">About Me</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="#proyectos">
+                        <span class="lang-es">Proyectos</span><span class="lang-en">Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                     <a class="nav-link fw-semibold" href="#trabajos">
+                      <span class="lang-es">Trabajos</span><span class="lang-en">Works</span>
+                        </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold text-success" href="certificaciones.html">
+                        <i class="bi bi-patch-check-fill me-1"></i>
+                        <span class="lang-es">Certificados</span><span class="lang-en">Certificates</span>
+                    </a>
+                </li>
 
-            <section class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav small fw-bold text-uppercase">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#inicio">
-                            <span class="lang-es">Inicio</span><span class="lang-en">Home</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#sobre-mi">
-                            <span class="lang-es">Sobre Mí</span><span class="lang-en">Bio</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#trayectoria">
-                            <span class="lang-es">Trayectoria</span><span class="lang-en">Resume</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#proyectos">
-                            <span class="lang-es">Proyectos</span><span class="lang-en">Projects</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#articulos">
-                            <span class="lang-es">Artículos</span><span class="lang-en">Articles</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#testimonios">
-                            <span class="lang-es">Testimonios</span><span class="lang-en">Testimonials</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contacto">
-                            <span class="lang-es">Contacto</span><span class="lang-en">Contact</span>
-                        </a>
-                    </li>
-                </ul>
-            </section>
+                <li class="nav-item ms-lg-3">
+                    <button class="btn btn-primary rounded-pill px-4 fw-bold" data-bs-toggle="modal" data-bs-target="#contactModal">
+                        <span class="lang-es">CONTACTO</span><span class="lang-en">CONTACT</span>
+                    </button>
+                </li>
 
-            <section class="d-flex align-items-center gap-2 d-flex-mobile">
-                <span class="nav-lang active" onclick="changeLang('es', this)">ES</span>
-                <span class="nav-lang" onclick="changeLang('en', this)">EN</span>
-                <button class="btn btn-sm border ms-2" id="btnTheme">
-                    <i class="bi bi-sun-fill" id="themeIcon"></i>
-                </button>
-            </section>
+                <li class="nav-item d-flex gap-2 ms-lg-3 mt-3 mt-lg-0">
+                    <span class="nav-lang active" style="cursor:pointer;" onclick="changeLang('es', this)">ES</span>
+                    <span class="nav-lang" style="cursor:pointer;" onclick="changeLang('en', this)">EN</span>
+                </li>
+
+                <li class="nav-item ms-lg-2">
+                    <button class="btn btn-sm border-0" id="btnTheme">
+                        <i class="bi bi-sun-fill" id="themeIcon"></i>
+                    </button>
+                </li>
+            </ul>
         </section>
-    </nav>
+    </section>
+</nav>
 </header>
 
 <main class="container text-center py-5" id="inicio">
@@ -313,7 +307,92 @@
     </section>
 </section>
 
-        <section id="articulos" class="py-5 border-top">
+<section id="trabajos" class="py-5 border-top border-secondary">
+    <section class="container">
+        <header class="text-center mb-5">
+            <h2 class="display-6 fw-bold" style="color: var(--accent);">
+                <span class="lang-es">Experiencia & Laboratorio Técnico</span>
+                <span class="lang-en">Experience & Technical Lab</span>
+            </h2>
+            <p class="lead text-secondary">
+                <span class="lang-es">Prototipos dinámicos y despliegues de ingeniería de calidad.</span>
+                <span class="lang-en">Dynamic prototypes and quality engineering deployments.</span>
+            </p>
+        </header>
+
+        <section class="row row-cols-1 row-cols-md-3 g-4">
+            
+            <article class="col">
+                <article class="project-card h-100 shadow d-flex flex-column p-4">
+                    <header class="text-center mb-3">
+                        <i class="bi bi-window-stack fs-1 text-accent"></i>
+                        <h3 class="h5 fw-bold mt-3 text-uppercase">SPA Interactive Bio</h3>
+                    </header>
+                    
+                    <section class="flex-grow-1">
+                        <p class="small text-secondary">
+                            <span class="lang-es">Aplicación de una sola página que integra mi trayectoria profesional, skills técnicos y artículos de optimización en un entorno dinámico.</span>
+                            <span class="lang-en">Single Page Application integrating my professional trajectory, technical skills, and optimization articles in a dynamic environment.</span>
+                        </p>
+                    </section>
+
+                    <footer class="mt-4">
+                        <a href="SPA.html" class="btn btn-primary w-100 rounded-pill fw-bold">
+                            <span class="lang-es">EXPLORAR SPA</span><span class="lang-en">EXPLORE SPA</span>
+                        </a>
+                    </footer>
+                </article>
+            </article>
+
+             <article class="col">
+                <article class="project-card h-100 shadow d-flex flex-column p-4">
+                    <header class="text-center mb-3">
+                        <i class="bi bi-window-stack fs-1 text-accent"></i>
+                        <h3 class="h5 fw-bold mt-3 text-uppercase">Ejercicios React</h3>
+                    </header>
+                    
+                    <section class="flex-grow-1">
+                        <p class="small text-secondary">
+                            <span class="lang-es">Laboratorio de lógica funcional en React que implementa procesamiento de estructuras de datos mediante métodos avanzados de arreglos (Map, Filter, Reduce).</span>
+                            <span class="lang-en">React functional logic lab implementing data structure processing through advanced array methods (Map, Filter, Reduce).</span>
+                        </p>
+                    </section>
+
+                    <footer class="mt-4">
+                        <a href="ejercicios-react.html" class="btn btn-primary w-100 rounded-pill fw-bold">
+                            <span class="lang-es">EXPLORAR</span><span class="lang-en">EXPLORE</span>
+                        </a>
+                    </footer>
+                </article>
+            </article>
+
+             <article class="col">
+                <article class="project-card h-100 shadow d-flex flex-column p-4">
+                    <header class="text-center mb-3">
+                        <i class="bi bi-window-stack fs-1 text-accent"></i>
+                        <h3 class="h5 fw-bold mt-3 text-uppercase">Cajas</h3>
+                    </header>
+                    
+                    <section class="flex-grow-1">
+                        <p class="small text-secondary">
+                            <span class="lang-es">Desarrollo de un layout complejo y responsivo utilizando el sistema de rejilla de Bootstrap 5, optimizado con arquitectura semántica HTML5.</span>
+                            <span class="lang-en">Development of a complex and responsive layout using the Bootstrap 5 grid system, optimized with HTML5 semantic architecture.</span>
+                        </p>
+                    </section>
+
+                    <footer class="mt-4">
+                        <a href="cajas.html" class="btn btn-primary w-100 rounded-pill fw-bold">
+                            <span class="lang-es">EXPLORAR</span><span class="lang-en">EXPLORE</span>
+                        </a>
+                    </footer>
+                </article>
+            </article>
+
+        </section>
+    </section>
+</section>
+
+ <section id="articulos" class="py-5 border-top">
             <h2 class="mb-4">Artículos</h2>
             <section class="row g-4 justify-content-center">
                 <article class="col-md-5">
@@ -325,7 +404,7 @@
                     </article>
                 </article>
             </section>
-        </section>
+</section>
 
    <section id="testimonios" class="py-5 bg-body-tertiary rounded-5 my-5 shadow-sm">
     <h2 class="h4 fw-bold mb-5 text-uppercase tracking-widest text-body-emphasis text-center">
