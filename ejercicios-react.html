@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Karol Hidalgo">
+    <title>Diana Hidalgo | Laboratorio React Full</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        :root { --accent: #a155ff; }
+        body { font-family: 'Inter', sans-serif; background-color: #0b0b0b; color: #e0e0e0; }
+        article.card-logic {
+            background: #161616;
+            border: 1px solid #2d2d2d;
+            border-radius: 20px;
+            padding: 25px;
+            height: 100%;
+        }
+        .text-accent { color: var(--accent); }
+        .badge-custom { background: rgba(161, 85, 255, 0.1); color: var(--accent); border: 1px solid var(--accent); padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+<header class="py-4 border-bottom border-secondary mb-5 bg-body-tertiary">
+    <nav class="container d-flex justify-content-between align-items-center">
+        <a href="index.html#trabajos" class="btn btn-outline-light rounded-pill fw-bold btn-sm">
+            <i class="bi bi-arrow-left"></i> VOLVER AL PORTAFOLIO
+        </a>
+        <h1 class="h5 m-0 fw-bold text-accent">REACT & ARRAYS LAB</h1>
+    </nav>
+</header>
+
+<main id="root" class="container pb-5"></main>
+
+<script type="text/babel">
+    const productos = [
+        { nombre: "Laptop", precio: 1200, cantidad: 5 },
+        { nombre: "Mouse", precio: 25, cantidad: 20 },
+        { nombre: "Teclado", precio: 45, cantidad: 15 },
+        { nombre: "Monitor", precio: 300, cantidad: 7 },
+        { nombre: "USB", precio: 10, cantidad: 50 }
+    ];
+
+    function App() {
+        // --- EJERCICIO 1 ---
+        const nombresMayuscula = productos.map(p => p.nombre.toUpperCase());
+        const economicos = productos.filter(p => p.precio < 50);
+        const monitor = productos.find(p => p.nombre === "Monitor");
+
+        // --- EJERCICIO 2 ---
+        const bajoStock = productos
+            .filter(p => p.cantidad < 10)
+            .map(p => ({ nombre: p.nombre, valorTotal: p.precio * p.cantidad }));
+        const totalBajoStock = bajoStock.reduce((acc, p) => acc + p.valorTotal, 0);
+
+        // --- EJERCICIO 3 ---
+        const valorTotalInventario = productos.reduce((acc, p) => acc + (p.precio * p.cantidad), 0);
+        const mayorStock = productos.reduce((prev, curr) => (prev.cantidad > curr.cantidad) ? prev : curr);
+        const clasificados = productos.reduce((acc, p) => {
+            if (p.precio > 100) acc.caros.push(p.nombre);
+            else acc.baratos.push(p.nombre);
+            return acc;
+        }, { caros: [], baratos: [] });
+
+        // --- RETO EXTRA ---
+        const retoReduce = productos.reduce((acc, p) => {
+            if (p.cantidad > 10) acc.push(p.nombre);
+            return acc;
+        }, []);
+
+        return (
+            <section>
+                <header class="text-center mb-5">
+                    <h2 class="display-6 fw-bold">Ejercicios React</h2>
+                    <p class="text-secondary">Lógica de Programación Aplicada</p>
+                </header>
+
+                <section class="row g-4">
+                    {/* Ejercicio 1 */}
+                    <article class="col-md-6">
+                        <article class="card-logic">
+                            <h3 class="h5 fw-bold text-accent">1. Operaciones Básicas</h3>
+                            <section class="d-flex flex-wrap gap-2 my-3">
+                                {nombresMayuscula.map(n => <span key={n} class="badge-custom">{n}</span>)}
+                            </section>
+                            <p class="small">Económicos: {economicos.length} productos.</p>
+                            <p class="small">Encontrado: <strong>{monitor ? monitor.nombre : 'No'}</strong> - ${monitor?.precio}</p>
+                        </article>
+                    </article>
+
+                    {/* Ejercicio 2 */}
+                    <article class="col-md-6">
+                        <article class="card-logic">
+                            <h3 class="h5 fw-bold text-accent">2. Análisis Stock Bajo</h3>
+                            <ul class="list-unstyled small">
+                                {bajoStock.map(p => (
+                                    <li key={p.nombre} class="d-flex justify-content-between border-bottom border-secondary py-1">
+                                        <span>{p.nombre}</span>
+                                        <span>Total: ${p.valorTotal}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <p class="mt-2 fw-bold text-danger">Valor Crítico Stock: ${totalBajoStock}</p>
+                        </article>
+                    </article>
+
+                    {/* Ejercicio 3 */}
+                    <article class="col-md-6">
+                        <article class="card-logic">
+                            <h3 class="h5 fw-bold text-accent">3. Reduce Avanzado</h3>
+                            <p class="small">Mayor Stock: <strong>{mayorStock.nombre}</strong> ({mayorStock.cantidad} unds)</p>
+                            <p class="small">Caros: {clasificados.caros.join(", ")}</p>
+                            <p class="small">Baratos: {clasificados.baratos.join(", ")}</p>
+                            <p class="h4 mt-3 fw-bold">Inventario Total: ${valorTotalInventario}</p>
+                        </article>
+                    </article>
+
+                    {/* Reto Extra */}
+                    <article class="col-md-6">
+                        <article class="card-logic" style={{borderStyle: 'dashed'}}>
+                            <h3 class="h5 fw-bold text-accent">Reto Extra</h3>
+                            <p class="small text-secondary">Nombres con cantidad > 10 (Usando Reduce):</p>
+                            <p class="fw-bold">{retoReduce.join(" - ")}</p>
+                        </article>
+                    </article>
+                </section>
+            </section>
+        );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+</script>
+</body>
+</html>

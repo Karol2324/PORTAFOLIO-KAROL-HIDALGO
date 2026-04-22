@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Karol Hidalgo">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Prototipo SPA - Diana Hidalgo</title>
+    <style>
+        /* 1. VARIABLES Y BASE */
+:root {
+    --accent: #a155ff; /* Violeta */
+    --bg-dark: #121212;
+    --card-bg: #1e1e1e;
+    --text-main: #e0e0e0;
+    --text-muted: #a0a0a0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    transition: background 0.3s;
+}
+
+/* 2. NAVEGACIÓN SPA */
+nav {
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: var(--text-main);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+nav a:hover { color: var(--accent); }
+
+/* 3. LÓGICA DE PÁGINAS (SPA) */
+.page { 
+    display: none; 
+    padding: 40px 20px; 
+    max-width: 1000px; 
+    margin: auto; 
+}
+
+.page.active { 
+    display: block; 
+    animation: fadeIn 0.5s ease-out; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 4. TARJETAS Y CONTENIDO */
+.card {
+    background: var(--card-bg);
+    border: 1px solid #333;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 20px rgba(161, 85, 255, 0.1);
+}
+
+/* 5. CONTROL DE IMÁGENES (Lo que arreglamos antes) */
+#proyectos img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* 6. IDIOMAS */
+.lang-en { display: none; }
+
+/* 7. BOTONES */
+.btn-primary {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+} 
+/* --- ESTILOS DEL HERO BANNER --- */
+.hero-section {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at 20% 30%, rgba(161, 85, 255, 0.15), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 77, 77, 0.05), transparent 40%);
+    padding: 60px 0;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -3px;
+    background: linear-gradient(to right, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
+
+.profile-frame {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+.profile-img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    border: 6px solid var(--accent);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    transition: all 0.5s ease-in-out;
+}
+
+.profile-img:hover {
+    border-radius: 50%;
+    transform: rotate(3deg) scale(1.02);
+}
+
+.exp-badge {
+    position: absolute;
+    bottom: 20px;
+    right: -10px;
+    background: white;
+    color: #000;
+    padding: 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    line-height: 1;
+}
+
+.btn-main {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.btn-main:hover {
+    box-shadow: 0 0 25px rgba(161, 85, 255, 0.5);
+    transform: translateY(-3px);
+}
+    </style>
+</head>
+<body>
+
+<nav class="sticky-top bg-dark p-3 d-flex justify-content-between align-items-center shadow-lg" style="z-index: 9999;">
+    <section>
+        <a href="javascript:void(0)" onclick="navigateTo('inicio')" class="mx-2 text-white text-decoration-none fw-bold">Inicio</a>
+        <a href="javascript:void(0)" onclick="navigateTo('sobre-mi')" class="mx-2 text-white text-decoration-none fw-bold">Sobre Mí</a>
+        <a href="javascript:void(0)" onclick="navigateTo('proyectos')" class="mx-2 text-white text-decoration-none fw-bold">Proyectos</a>
+        <a href="javascript:void(0)" onclick="navigateTo('trabajos')" class="mx-2 text-white text-decoration-none fw-bold">Trabajos</a>
+        <a href="javascript:void(0)" onclick="navigateTo('certificados')" class="mx-2 text-white text-decoration-none fw-bold">Certificados</a>
+    </section>
+
+    <section class="d-flex gap-3">
+        <span onclick="changeLang('es')" style="cursor:pointer; color: var(--accent); font-weight: bold;">ES</span>
+        <span onclick="changeLang('en')" style="cursor:pointer; color: #777; font-weight: bold;">EN</span>
+    </section>
+</nav>
+
+    <main>
+     <article id="inicio" class="page active hero-section">
+    <section class="container text-start">
+        <section class="row align-items-center g-5">
+            
+            <article class="col-lg-7">
+                <header>
+                    <p class="text-accent fw-bold text-uppercase mb-2" style="letter-spacing: 3px; color: var(--accent);">
+                        <span class="lang-es">Innovación y Calidad</span><span class="lang-en">Innovation & Quality</span>
+                    </p>
+                    <h1 class="hero-title text-uppercase">Diana Hidalgo</h1>
+                </header>
+
+                <p class="lead text-secondary mb-4 fs-4">
+                    <span class="lang-es"><strong>Staff Career & Performance @Globant</strong>. Especialista en potenciar talento con la precisión técnica del <strong>Quality Control</strong>.</span>
+                    <span class="lang-en"><strong>Staff Career & Performance @Globant</strong>. Specialist in boosting talent with the technical precision of <strong>Quality Control</strong>.</span>
+                </p>
+
+                <footer class="d-flex gap-3 mt-5">
+                    <button onclick="navigateTo('proyectos')" class="btn-main">
+                        <span class="lang-es">Ver Portafolio</span><span class="lang-en">View Portfolio</span>
+                    </button>
+                    <button onclick="navigateTo('trabajos')" class="btn-main" style="background: transparent; border: 2px solid #444;">
+                        <span class="lang-es">Mis Trabajos</span><span class="lang-en">My Works</span>
+                    </button>
+                </footer>
+            </article>
+
+            <aside class="col-lg-5 text-center">
+                <figure class="profile-frame">
+                    <img src="https://ca.slack-edge.com/E02KLGDBF9B-U04421AFUL9-a15219b488e9-512" class="profile-img" alt="Diana Hidalgo">
+                    <section class="exp-badge">
+                        <span class="d-block fs-2">9+</span>
+                        <span class="small text-uppercase">Años Exp.</span>
+                    </section>
+                </figure>
+            </aside>
+
+        </section>
+    </section>
+</article>
+
+        <article id="sobre-mi" class="page">
+    <section class="container py-5 text-start">
+        <header class="text-center mb-5">
+            <h2 class="display-6 fw-bold" style="color: var(--accent);">
+                <span class="lang-es">Sobre Mí</span><span class="lang-en">About Me</span>
+            </h2>
+        </header>
+
+        <section class="row align-items-center">
+            <article class="col-lg-8 mx-auto">
+                <p class="lead">
+                    <span class="lang-es">Profesional con 9 años de experiencia en gestión de talento en <strong>Globant</strong>, actualmente evolucionando hacia el mundo del <strong>Quality Control (QC)</strong> y la automatización.</span>
+                    <span class="lang-en">Professional with 9 years of experience in talent management at <strong>Globant</strong>, currently evolving into the world of <strong>Quality Control (QC)</strong> and automation.</span>
+                </p>
+                <p>
+                    <span class="lang-es">Mi enfoque combina la visión estratégica del rendimiento humano con el rigor técnico del testing de software. Experta en optimización de ecosistemas de aprendizaje (Udemy Business) y apasionada por herramientas como Java, Python, k6 y Grafana.</span>
+                    <span class="lang-en">My approach combines strategic vision of human performance with the technical rigor of software testing. Expert in learning ecosystem optimization (Udemy Business) and passionate about tools like Java, Python, k6, and Grafana.</span>
+                </p>
+                
+                <footer class="mt-4 d-flex flex-wrap gap-2">
+                    <span class="badge border border-primary text-primary p-2">Staff Career & Performance</span>
+                    <span class="badge border border-info text-info p-2">QC Analyst Student</span>
+                    <span class="badge border border-warning text-warning p-2">Automation Enthusiast</span>
+                </footer>
+            </article>
+        </section>
+    </section>
+</article>
+
+<article id="proyectos" class="page">
+    <section class="container py-5">
+        <header class="text-center mb-5">
+           <h2 class="display-6 fw-bold">
+             <span class="lang-es">Mis Proyectos</span>
+             <span class="lang-en">My Projects</span>
+             </h2>
+            <hr style="width: 50px; border: 2px solid var(--accent); margin: auto;">
+        </header>
+
+        <section class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+            
+            <article class="col" style="max-width: 450px;">
+                <section class="card h-100 shadow-sm border-0 bg-body-tertiary">
+                    <img src="https://cdn.pixabay.com/photo/2023/08/12/08/46/ai-generated-8185136_1280.png" class="card-img-top" alt="Carreras Sport">
+                    <section class="card-body p-4">
+                        <h3 class="h5 fw-bold">CARRERAS SPORT 2025</h3>
+                        <p class="small text-secondary">
+                            <span class="lang-es">Plataforma para apasionados del deporte motor.</span>
+                            <span class="lang-en">Platform for motorsport enthusiasts.</span>
+                        </p>
+                        <a href="https://karol2324.github.io/CARRERAS-SPORT-2025/" target="_blank" class="btn btn-primary w-100 rounded-pill">
+                            <span class="lang-es">Visitar</span><span class="lang-en">Visit</span>
+                        </a>
+                    </section>
+                </section>
+            </article>
+
+            <article class="col" style="max-width: 450px;">
+                <section class="card h-100 shadow-sm border-0 bg-body-tertiary">
+                    <img src="https://cdn.pixabay.com/photo/2017/04/27/08/18/champagne-2264811_1280.jpg" class="card-img-top" alt="Proyecto Integrador">
+                    <section class="card-body p-4">
+                        <h3 class="h5 fw-bold text-uppercase">Proyecto Integrador</h3>
+                        <p class="small text-secondary">
+                            <span class="lang-es">E-commerce: Onces, gatitos y velocidad.</span>
+                            <span class="lang-en">E-commerce: Tea room, kittens, and speed.</span>
+                        </p>
+                        <a href="https://karol2324.github.io/PROYECTO-INTEGRADOR/" target="_blank" class="btn btn-primary w-100 rounded-pill">
+                            <span class="lang-es">Visitar</span><span class="lang-en">Visit</span>
+                        </a>
+                    </section>
+                </section>
+            </article>
+
+        </section>
+    </section>
+</article>
+        <article id="trabajos" class="page">
+    <section class="container py-5 text-start">
+        <header class="text-center mb-5">
+            <h2 class="display-6 fw-bold text-body-emphasis">
+                <span class="lang-es">Trabajos y Artículos</span><span class="lang-en">Works & Articles</span>
+            </h2>
+            <p class="text-secondary">
+                <span class="lang-es">Documentación técnica y casos de éxito.</span>
+                <span class="lang-en">Technical documentation and success cases.</span>
+            </p>
+        </header>
+
+        <section class="row g-4">
+            <article class="col-12">
+                <section class="card border-0 bg-body-tertiary shadow-sm rounded-4 overflow-hidden">
+                    <section class="card-body p-4 p-lg-5">
+                        <header class="d-flex justify-content-between align-items-start mb-3">
+                            <h3 class="h4 fw-bold" style="color: var(--accent);">
+                                <span class="lang-es">Optimización: Globant - Udemy Business</span>
+                                <span class="lang-en">Optimization: Globant - Udemy Business</span>
+                            </h3>
+                            <span class="badge rounded-pill bg-primary">Data Analysis</span>
+                        </header>
+                        
+                        <p class="lead small text-body-secondary">
+                            <span class="lang-es">Administración inteligente de licencias mediante automatización con Python y gobernanza por regiones (TDCs).</span>
+                            <span class="lang-en">Smart license administration through Python automation and regional governance (TDCs).</span>
+                        </p>
+
+                        <section class="collapse" id="detailsUdemy">
+                            <hr class="my-4">
+                            <section class="row align-items-center">
+                                <article class="col-md-6">
+                                    <h4 class="h6 fw-bold text-uppercase">Pilar: Automation</h4>
+                                    <p class="small">Transition from Excel to <strong>Python & Pandas</strong> for real-time cloud analytics.</p>
+                                </article>
+                                <aside class="col-md-6 text-center">
+                                    <figure class="p-3 border border-dashed rounded text-muted small">
+                                        
+                                        <figcaption class="mt-2">Visual TDC Dashboard</figcaption>
+                                    </figure>
+                                </aside>
+                            </section>
+                        </section>
+                        
+                        <button class="btn btn-link p-0 mt-3 text-decoration-none fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#detailsUdemy">
+                            <span class="lang-es">Leer más...</span><span class="lang-en">Read more...</span>
+                        </button>
+                    </section>
+                </section>
+            </article>
+
+            <article class="col-12">
+                <section class="card border-0 bg-body-tertiary shadow-sm rounded-4 overflow-hidden">
+                    <section class="card-body p-4 p-lg-5">
+                        <header class="d-flex justify-content-between align-items-start mb-3">
+                            <h3 class="h4 fw-bold" style="color: #ff4d4d;">
+                                <span class="lang-es">QA Performance: k6 & Grafana</span>
+                                <span class="lang-en">QA Performance: k6 & Grafana</span>
+                            </h3>
+                            <span class="badge rounded-pill bg-danger">Testing</span>
+                        </header>
+
+                        <p class="lead small text-body-secondary">
+                            <span class="lang-es">Transformación del QA: de clicks manuales a activos de ingeniería de carga y observabilidad.</span>
+                            <span class="lang-en">QA Transformation: from manual clicks to load engineering assets and observability.</span>
+                        </p>
+
+                        <section class="collapse" id="detailsK6">
+                            <hr class="my-4">
+                            <p class="small italic">"Del Click al Código: Dominando el caos con scripts en JavaScript y umbrales de éxito (Thresholds)."</p>
+                            <code class="d-block p-2 bg-dark rounded text-info x-small mb-3">thresholds: { http_req_duration: ['p(95)<500'] }</code>
+                        </section>
+
+                        <button class="btn btn-link p-0 mt-3 text-decoration-none fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#detailsK6" style="color: #ff4d4d;">
+                            <span class="lang-es">Leer más...</span><span class="lang-en">Read more...</span>
+                        </button>
+                    </section>
+                </section>
+            </article>
+        </section>
+    </section>
+</article>
+
+<article id="certificados" class="page">
+    <section class="container py-5">
+        <header class="text-center mb-5">
+            <h2 class="display-6 fw-bold" style="color: var(--accent);">
+                <span class="lang-es">Certificaciones</span><span class="lang-en">Certifications</span>
+            </h2>
+            <hr style="width: 50px; border: 2px solid var(--accent); margin: auto;">
+        </header>
+
+        <section class="row row-cols-1 row-cols-md-3 g-4">
+            <article class="col">
+                <section class="card h-100 shadow-sm border-secondary bg-dark">
+                    <section class="card-body text-center p-4">
+                        <i class="bi bi-award-fill text-accent fs-1 mb-3"></i>
+                        <h3 class="h5 fw-bold text-white">QA Manual Testing</h3>
+                        <p class="small text-secondary">Fundamentos de Calidad de Software y Ciclo de Vida del Defecto.</p>
+                    </section>
+                </section>
+            </article>
+
+            <article class="col">
+                <section class="card h-100 shadow-sm border-secondary bg-dark">
+                    <section class="card-body text-center p-4">
+                        <i class="bi bi-code-slash text-accent fs-1 mb-3"></i>
+                        <h3 class="h5 fw-bold text-white">Python for Data Science</h3>
+                        <p class="small text-secondary">Análisis de datos y automatización de procesos.</p>
+                    </section>
+                </section>
+            </article>
+
+            <article class="col">
+                <section class="card h-100 shadow-sm border-secondary bg-dark">
+                    <section class="card-body text-center p-4">
+                        <i class="bi bi-graph-up-arrow text-accent fs-1 mb-3"></i>
+                        <h3 class="h5 fw-bold text-white">Performance Testing k6</h3>
+                        <p class="small text-secondary">Pruebas de carga y observabilidad con Grafana.</p>
+                    </section>
+                </section>
+            </article>
+        </section>
+    </section>
+</article>
+<footer class="bg-dark text-white py-5 border-top border-secondary mt-5">
+    <section class="container text-center">
+        <h3 class="h5 mb-4 text-uppercase fw-bold" style="letter-spacing: 2px;">
+            <span class="lang-es">Conectemos</span><span class="lang-en">Let's Connect</span>
+        </h3>
+        
+        <section class="d-flex justify-content-center gap-4 fs-2 mb-4">
+            <a href="https://linkedin.com/in/carolina-hidalgo-5362221b9" target="_blank" class="text-white text-accent-hover">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://github.com/Karol2324" target="_blank" class="text-white text-accent-hover">
+                <i class="bi bi-github"></i>
+            </a>
+            <a href="https://wa.me/573234682588" target="_blank" class="text-white text-accent-hover">
+                <i class="bi bi-whatsapp"></i>
+            </a>
+        </section>
+
+        <p class="small text-secondary">
+            &copy; 2026 Diana Hidalgo Guerrero | Staff Career & Performance
+        </p>
+    </section>
+</footer>
+    </main>
+
+    <script>
+        function navigateTo(id) {
+            // 1. Buscamos todas las "páginas" y les quitamos la clase active
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            // 2. Buscamos la página que el usuario pidió y le ponemos active
+            const targetPage = document.getElementById(id);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            // 3. Opcional: Subir al inicio de la página automáticamente
+            window.scrollTo(0, 0);
+        }
+
+        function changeLang(lang) {
+    // 1. Ocultar todos los textos de ambos idiomas
+    document.querySelectorAll('.lang-es, .lang-en').forEach(el => {
+        el.style.display = 'none';
+    });
+    // 2. Mostrar solo los del idioma seleccionado
+    document.querySelectorAll('.lang-' + lang).forEach(el => {
+        el.style.display = 'inline'; // Cambia a 'block' si prefieres que ocupen toda la línea
+    });
+    // 3. Opcional: Marcar el botón activo (si tienes botones visibles)
+    console.log("Idioma cambiado a: " + lang);
+}
+    </script>
+
+</body>
+</html>
